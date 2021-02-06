@@ -11,8 +11,7 @@ class InMemoryBrandRepository(BrandRepository):
 
     def store(self, brand: Brand) -> None:
         self._database[brand.brand_id.value] = brand
-        pass
 
     def find_all(self) -> List[Brand]:
-        return self._database.values()
+        return list(self._database.values())
 

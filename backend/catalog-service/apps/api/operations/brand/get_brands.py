@@ -20,7 +20,7 @@ class GetBrandsResponse(serializers.Serializer):
 @api_view(['GET'])
 def get_brands(request):
     provider: Provider = request.provider
-    response = provider.get_brands.execute()
-    serializer = GetBrandsResponse(response, many=True)
+    result = provider.get_brands.execute()
+    response = GetBrandsResponse(result, many=True)
 
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(response.data, status=status.HTTP_200_OK)

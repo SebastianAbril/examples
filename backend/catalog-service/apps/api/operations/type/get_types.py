@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.fields import CharField, UUIDField
 from rest_framework.response import Response
 
+from core.provider import Provider
+
 
 class GetTypesResponse(serializers.Serializer):
     typeId = UUIDField(required=False)
@@ -15,7 +17,8 @@ class GetTypesResponse(serializers.Serializer):
 )
 @api_view(['GET'])
 def get_types(request):
-    result = []
+    provider: Provider = request.provider
+    result = provider.get_types.execute()
 
-    serializer = GetTypesResponse(result, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    response = GetTypesResponse(result, many=True)
+    return Response(response.data, status=status.HTTP_200_OK)
