@@ -1,4 +1,5 @@
 # catalog-service [Python and Django]
+This project use python and Django framework with a hexagonal architecture style.
 
 ## Folder Structure
 ```
