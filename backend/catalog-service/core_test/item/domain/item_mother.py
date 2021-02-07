@@ -1,3 +1,5 @@
+from typing import List
+
 from core.item.domain.item import Item
 from core.item.domain.item_id import ItemId
 from core.shared.base.domain.uuid import UUID
@@ -26,11 +28,11 @@ class ItemMother:
         return 'picture_fileName'
 
     @staticmethod
-    def random_item() -> Item:
+    def random_item(description: str = '') -> Item:
         item_id = ItemMother.random_id()
         brand_id = BrandMother.random_id()
         type_id = TypeMother.random_id()
-        description = ItemMother.random_description()
+        description = ItemMother.random_description() + description
         picture_file_name = ItemMother.random_picture_file_name()
         price = ItemMother.random_price()
         return Item(
@@ -57,3 +59,13 @@ class ItemMother:
             picture_file_name,
             price
         )
+
+    @staticmethod
+    def random_items(number_of_items: int) -> List[Item]:
+        item_list = []
+        range_items = range(number_of_items)
+        for i in range_items:
+            item_list.append(
+                ItemMother.random_item(' ' + str(i))
+            )
+        return  item_list
