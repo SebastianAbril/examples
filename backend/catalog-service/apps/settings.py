@@ -131,4 +131,5 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'SCHEMA_PATH_PREFIX': r'/api/v[0-9]',
+    'TITLE': 'Catalog Service',
 }

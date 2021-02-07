@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from apps.api.operations.brand.get_brands import get_brands
@@ -27,7 +28,8 @@ from apps.api.operations.type.get_types import get_types
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('', SpectacularSwaggerView.as_view(url_name='schema'), name='schema-swagger-ui'),
+    path('', RedirectView.as_view(pattern_name='schema-swagger-ui', permanent=False)),
+    path('swagger', SpectacularSwaggerView.as_view(url_name='schema'), name='schema-swagger-ui'),
     path('api/v1/item/create_item', create_item),
     path('api/v1/item/change_price_item', change_price_item),
     path('api/v1/item/get_paginated_items', get_paginated_items),
