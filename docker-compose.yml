@@ -6,3 +6,13 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
+  api-gateway:
+    build: ./backend/api-gateway
+    environment:
+      - CATALOG_SERVICE_URI=http://catalog-service:8000
+    ports:
+      - 8080:8080
+    depends_on:
+      - catalog-service
+
+      

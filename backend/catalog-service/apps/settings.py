@@ -25,7 +25,9 @@ SECRET_KEY = '!77p!ubsrd=g4r1-7+f%s#stlkdxlxom9k+)dopytp)=o&0d!-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'catalog-service'
+]
 
 
 # Application definition

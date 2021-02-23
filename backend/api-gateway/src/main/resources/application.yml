@@ -6,7 +6,7 @@ spring:
     gateway:
       routes:
         - id: catalog-service
-          uri: http://localhost:8000/
+          uri: ${CATALOG_SERVICE_URI}
           predicates:
             - Path=/catalog/**
           filters:
