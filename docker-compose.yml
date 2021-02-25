@@ -1,18 +1,24 @@
 version: '3.7'
 
 services:
+  web-app:
+    build: ./frontend/web-app
+    ports:
+      - 8000:80
   catalog-service:
     build: ./backend/catalog-service
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:80
     ports:
-      - 8000:8000
+      - 8001:80
   api-gateway:
     build: ./backend/api-gateway
     environment:
-      - CATALOG_SERVICE_URI=http://catalog-service:8000
+      - WEB_APP_URI=http://web-app:80
+      - CATALOG_SERVICE_URI=http://catalog-service:80
     ports:
-      - 8080:8080
+      - 80:8080
     depends_on:
       - catalog-service
+      - web-app
 
       

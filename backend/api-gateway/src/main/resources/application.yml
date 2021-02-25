@@ -5,13 +5,15 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: web-app
+          uri: ${WEB_APP_URI}
+          predicates:
+            - Path=/web/**
+          filters:
+            - StripPrefix=1
         - id: catalog-service
           uri: ${CATALOG_SERVICE_URI}
           predicates:
             - Path=/catalog/**
           filters:
             - StripPrefix=1
-        - id: consumerModule
-          uri: http://localhost:8082/
-          predicates:
-            - Path=/consumer/**

@@ -26,9 +26,9 @@ SECRET_KEY = '!77p!ubsrd=g4r1-7+f%s#stlkdxlxom9k+)dopytp)=o&0d!-'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'catalog-service'
+    'catalog-service',
+    '127.0.0.1'
 ]
-
 
 # Application definition
 
