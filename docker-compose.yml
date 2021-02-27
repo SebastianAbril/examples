@@ -5,11 +5,33 @@ services:
     build: ./frontend/web-app
     ports:
       - 8000:80
+
+  catalog-db:
+    image: postgres:11
+    ports:
+      - 9000:5432
+    environment:
+      - POSTGRES_DB=catalog
+      - POSTGRES_USER=catalog
+      - POSTGRES_PASSWORD=catalog
+    volumes:
+      - ./.data/catalog:/var/lib/postgresql/data  
+
   catalog-service:
     build: ./backend/catalog-service
     command: python manage.py runserver 0.0.0.0:80
     ports:
       - 8001:80
+    environment:
+      - DATABASE_HOST=catalog-db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=catalog
+      - DATABASE_PASSWORD=catalog
+      - DATABASE_NAME=catalog
+      - DJANGO_SECRET_KEY=!77p!ubsrd=g4r1-7+f%s#stlkdxlxom9k+)dopytp)=o&0d!-
+    depends_on:
+      - catalog-db
+  
   api-gateway:
     build: ./backend/api-gateway
     environment:
@@ -21,4 +43,14 @@ services:
       - catalog-service
       - web-app
 
-      
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 7000:80
+    depends_on:
+      - catalog-db
+    links:
+      - catalog-db:catalog-db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin    

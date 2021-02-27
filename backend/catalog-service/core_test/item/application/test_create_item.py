@@ -7,7 +7,7 @@ from core.item.domain.item_repository import ItemRepository
 from core.item.infrastructure.in_memory_item_repository import InMemoryItemRepository
 from core_test.brand.domain.brand_mother import BrandMother
 from core_test.item.domain.item_mother import ItemMother
-from core_test.type.domain.type_mother import TypeMother
+from core_test.item_type.domain.type_mother import TypeMother
 
 
 class TestCreateItem(unittest.TestCase):

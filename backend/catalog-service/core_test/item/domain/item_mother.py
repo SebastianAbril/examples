@@ -4,7 +4,7 @@ from core.item.domain.item import Item
 from core.item.domain.item_id import ItemId
 from core.shared.base.domain.uuid import UUID
 from core_test.brand.domain.brand_mother import BrandMother
-from core_test.type.domain.type_mother import TypeMother
+from core_test.item_type.domain.type_mother import TypeMother
 
 
 class ItemMother:

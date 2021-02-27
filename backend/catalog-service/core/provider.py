@@ -1,13 +1,12 @@
 from core.brand.application.get_brands import GetBrands
 from core.brand.domain.brand_repository import BrandRepository
-from core.brand.infrastructure.in_memory_brand_repository import InMemoryBrandRepository
+from core.brand.infrastructure.django_brand_repository import DjangoBrandRepository
 from core.item.application.change_price_item import ChangePriceItem
 from core.item.application.create_item import CreateItem
 from core.shared.bus.domain.event_bus import EventBus
 from core.type.application.get_types import GetTypes
 from core.type.domain.type_repository import TypeRepository
-from core.type.infrastructure.in_memory_type_repository import InMemoryTypeRepository
-from core_test.brand.domain.brand_mother import BrandMother
+from core.type.infrastructure.django_type_repository import DjangoTypeRepository
 
 
 class Provider:
@@ -25,12 +24,8 @@ class Provider:
 
     def __init__(self):
         # Infrastructure
-        brand_repository: BrandRepository = InMemoryBrandRepository()
-        type_repository: TypeRepository = InMemoryTypeRepository()
-
-        brands = BrandMother.random_brands()
-        for brand in brands:
-            brand_repository.store(brand)
+        brand_repository: BrandRepository = DjangoBrandRepository()
+        type_repository: TypeRepository = DjangoTypeRepository()
 
         # InfrastructureServices
 

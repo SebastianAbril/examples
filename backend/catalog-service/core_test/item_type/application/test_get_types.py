@@ -7,7 +7,7 @@ from core.type.application.get_types import GetTypes
 from core.type.domain.type import Type
 from core.type.domain.type_repository import TypeRepository
 from core.type.infrastructure.in_memory_type_repository import InMemoryTypeRepository
-from core_test.type.domain.type_mother import TypeMother
+from core_test.item_type.domain.type_mother import TypeMother
 
 
 class TestGetTypes(unittest.TestCase):

@@ -8,7 +8,7 @@ from core.provider import Provider
 
 
 class GetTypesResponse(serializers.Serializer):
-    typeId = UUIDField(required=False)
+    typeId = UUIDField(required=False, source='type_id.value')
     name = CharField(required=False)
 
 

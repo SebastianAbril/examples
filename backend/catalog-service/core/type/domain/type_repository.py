@@ -7,7 +7,7 @@ from core.type.domain.type import Type
 class TypeRepository(metaclass=ABCMeta):
 
     @abstractmethod
-    def store(self, item_type: Type):
+    def store(self, type: Type):
         pass
 
     @abstractmethod

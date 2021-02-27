@@ -1,5 +1,5 @@
-from core.shared.base.domain.aggregate_root import AggregateRoot
 from core.type.domain.type_id import TypeId
+from core.shared.base.domain.aggregate_root import AggregateRoot
 
 
 class Type(AggregateRoot):
