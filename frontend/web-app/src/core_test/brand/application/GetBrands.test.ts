@@ -11,7 +11,7 @@ describe('GetBrands should', () => {
     test('get all the brands', async () => {
         apiService = mock<ApiService>();
         getBrands = new GetBrands(instance(apiService));
-        const brands = BrandMother.random_brands(3);
+        const brands = BrandMother.randomBrands(3);
 
         when(apiService.get<Brand[]>('/catalog/api/v1/brand/get_brands')).thenResolve(brands);
 

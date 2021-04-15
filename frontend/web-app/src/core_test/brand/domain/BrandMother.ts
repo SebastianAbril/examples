@@ -1,19 +1,19 @@
 import {Brand} from "../../../core/brand/domain/Brand";
-import {v4 as uuidv4} from 'uuid';
+import {UUID} from "../../../core/shared/domain/UUID";
 
 export class BrandMother {
 
-    static random_brand(): Brand {
+    static randomBrand(): Brand {
         return {
-            brandId: uuidv4(),
+            brandId: UUID.random(),
             name: 'Any Brand'
         };
     }
 
-    static random_brands(quantity: number): Brand[] {
+    static randomBrands(number: number): Brand[] {
         const brands: Brand[] = [];
-        for (let i = 0; i < quantity; i++) {
-            brands.push(BrandMother.random_brand());
+        for (let i = 0; i < number; i++) {
+            brands.push(BrandMother.randomBrand());
         }
 
         return brands;

@@ -2,13 +2,10 @@ import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../AppContext";
 import {OnPageLoadPresenter} from "./OnPageLoadPresenter";
 import {Brand} from "../../core/brand/domain/Brand";
+import {Type} from "../../core/type/domain/Type";
 
 
 
-type Type = {
-    typeId: string;
-    name: string;
-};
 
 type Album = {
     albumId: number;
@@ -23,7 +20,11 @@ const HomeScreen = () => {
     const [types, setTypes] = useState<Type[]>([]);
     const [albums, setAlbums] = useState<Album[]>([]);
 
-    const onPageLoadPresenter = useRef(new OnPageLoadPresenter({setBrands}, provider.getBrands))
+    const onPageLoadPresenter = useRef(new OnPageLoadPresenter(
+        {setBrands, setTypes},
+        provider.getBrands,
+        provider.getTypes
+    ));
 
     useEffect(() => {
         onPageLoadPresenter.current.handle();
@@ -33,12 +34,9 @@ const HomeScreen = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await Promise.all([
-                fetch('/catalog/api/v1/type/get_types').then(response => response.json()),
                 fetch('https://jsonplaceholder.typicode.com/photos').then(response => response.json())
             ]);
-            const types = data[0] as Type[];
-            const albums = data[1].splice(0, 5) as Album[];
-            setTypes(types);
+            const albums = data[0].splice(0, 5) as Album[];
             setAlbums(albums);
         };
         fetchData();
