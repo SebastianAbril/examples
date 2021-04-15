@@ -1,17 +1,21 @@
 import React from 'react';
 import './App.css';
+import {AppContext, AppContextType} from './app/AppContext';
 import HomeScreen from "./app/screens/HomeScreen";
+import {Provider} from "./core/Provider";
 
 function App() {
-  fetch('/catalog/api/v1/brand/get_brands')
-      .then(response => response.json())
-      .then(data => console.log(data));
+    const appContext: AppContextType = {
+        provider: new Provider()
+    };
 
-  return (
-    <div className="App">
-      <HomeScreen />
-    </div>
-  );
+    return (
+        <div className="App">
+            <AppContext.Provider value={appContext}>
+                <HomeScreen/>
+            </AppContext.Provider>
+        </div>
+    );
 }
 
 export default App;
