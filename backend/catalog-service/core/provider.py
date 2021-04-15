@@ -3,6 +3,7 @@ from core.brand.domain.brand_repository import BrandRepository
 from core.brand.infrastructure.django_brand_repository import DjangoBrandRepository
 from core.item.application.change_price_item import ChangePriceItem
 from core.item.application.create_item import CreateItem
+from core.item.application.get_item_by_id import GetItemById
 from core.item.application.get_paginated_items import GetPaginatedItems
 from core.item.domain.item_repository import ItemRepository
 from core.item.infrastructure.django_item_repository_repository import DjangoItemRepository
@@ -25,6 +26,7 @@ class Provider:
     get_paginated_items: GetPaginatedItems
     change_price_item: ChangePriceItem
     create_item: CreateItem
+    get_item_by_id: GetItemById
 
     def __init__(self):
         # Infrastructure
@@ -37,7 +39,9 @@ class Provider:
         # Application Services
         self.get_brands = GetBrands(brand_repository)
         self.get_types = GetTypes(type_repository)
+
         self.get_paginated_items = GetPaginatedItems(item_repository)
+        self.get_item_by_id = GetItemById(item_repository)
 
 
 provider = Provider()

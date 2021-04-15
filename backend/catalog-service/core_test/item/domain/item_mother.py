@@ -36,6 +36,7 @@ class ItemMother:
         item_id = ItemMother.random_id()
         brand_id = BrandMother.random_id()
         type_id = TypeMother.random_id()
+        name = ItemMother.random_name()
         description = ItemMother.random_description() + description
         picture_file_name = ItemMother.random_picture_file_name()
         price = ItemMother.random_price()
@@ -43,6 +44,7 @@ class ItemMother:
             item_id,
             brand_id,
             type_id,
+            name,
             description,
             picture_file_name,
             price

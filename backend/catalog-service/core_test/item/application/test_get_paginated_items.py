@@ -18,14 +18,14 @@ class TestGetPaginatedItems(TestCase):
         number_of_items = 3
         items = ItemMother.random_items(number_of_items)
 
-        self.give_a_get_paginated_items_use_case()
+        self.given_a_get_paginated_items_use_case()
         self.and_items_in_the_repository(items)
 
         paginated_items = self.when_get_paginated_items_is_executed(page, size)
 
         self.then_the_paginated_items_has_this_information(number_of_items, page, paginated_items, size)
 
-    def give_a_get_paginated_items_use_case(self):
+    def given_a_get_paginated_items_use_case(self):
         self.item_repository = InMemoryItemRepository()
         self.get_paginated_items = GetPaginatedItems(self.item_repository)
 
