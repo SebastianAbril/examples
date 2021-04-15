@@ -58,6 +58,7 @@ class TestChangePriceItem(unittest.TestCase):
         assert_that(save_item.item_id, equal_to(item.item_id))
         assert_that(save_item.brand_id, equal_to(item.brand_id))
         assert_that(save_item.type_id, equal_to(item.type_id))
+        assert_that(save_item.name, equal_to(item.name))
         assert_that(save_item.description, equal_to(item.description))
         assert_that(save_item.picture_file_name, equal_to(item.picture_file_name))
         assert_that(save_item.price, equal_to(new_price))

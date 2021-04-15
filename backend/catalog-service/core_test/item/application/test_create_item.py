@@ -18,6 +18,7 @@ class TestCreateItem(unittest.TestCase):
         item_id = ItemMother.random_id()
         brand_id = BrandMother.random_id()
         type_id = TypeMother.random_id()
+        name = ItemMother.random_name()
         description = ItemMother.random_description()
         picture_file_name = ItemMother.random_picture_file_name()
         price = ItemMother.random_price()
@@ -29,6 +30,7 @@ class TestCreateItem(unittest.TestCase):
             item_id,
             brand_id,
             type_id,
+            name,
             description,
             picture_file_name,
             price
@@ -39,6 +41,7 @@ class TestCreateItem(unittest.TestCase):
         assert_that(save_item.item_id, equal_to(item_id))
         assert_that(save_item.brand_id, equal_to(brand_id))
         assert_that(save_item.type_id, equal_to(type_id))
+        assert_that(save_item.name, equal_to(name))
         assert_that(save_item.description, equal_to(description))
         assert_that(save_item.picture_file_name, equal_to(picture_file_name))
         assert_that(save_item.price, equal_to(price))

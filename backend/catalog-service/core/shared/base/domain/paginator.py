@@ -2,6 +2,7 @@ from typing import List, TypeVar, Generic
 
 T = TypeVar("T")
 
+
 class Paginator(Generic[T]):
     total_items: int
     total_pages: int

@@ -15,6 +15,10 @@ class ItemMother:
             UUID.random()
         )
 
+    @classmethod
+    def random_name(cls):
+        return 'any random name'
+
     @staticmethod
     def random_description() -> str:
         return 'any random description'
@@ -49,12 +53,14 @@ class ItemMother:
         item_id = ItemMother.random_id()
         brand_id = BrandMother.random_id()
         type_id = TypeMother.random_id()
+        name = ItemMother.random_name()
         description = ItemMother.random_description()
         picture_file_name = ItemMother.random_picture_file_name()
         return Item(
             item_id,
             brand_id,
             type_id,
+            name,
             description,
             picture_file_name,
             price
@@ -68,4 +74,4 @@ class ItemMother:
             item_list.append(
                 ItemMother.random_item(' ' + str(i))
             )
-        return  item_list
+        return item_list

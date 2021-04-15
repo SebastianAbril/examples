@@ -11,10 +11,11 @@ class CreateItem:
     def __init__(self, catalog_item_repository: ItemRepository):
         self._item_repository = catalog_item_repository
 
-    def execute(self, item_id: ItemId, brand_id: BrandId, type_id: TypeId, description: str, picture_file_name: str,
+    def execute(self, item_id: ItemId, brand_id: BrandId, type_id: TypeId, name: str, description: str,
+                picture_file_name: str,
                 price: float):
         item = Item.create(
-            item_id, brand_id, type_id, description, picture_file_name, price
+            item_id, brand_id, type_id, name, description, picture_file_name, price
         )
 
         self._item_repository.store(item)

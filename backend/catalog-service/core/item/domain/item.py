@@ -10,24 +10,27 @@ class Item(AggregateRoot):
     _brand_id: BrandId
     _type_id: TypeId
     _description: str
+    _name: str
     _picture_file_name: str
     _price: float
 
-    def __init__(self, item_id: ItemId, brand_id: BrandId, type_id: TypeId, description: str, picture_file_name: str,
+    def __init__(self, item_id: ItemId, brand_id: BrandId, type_id: TypeId, name: str, description: str,
+                 picture_file_name: str,
                  price: float):
         super().__init__()
         self._item_id = item_id
         self._brand_id = brand_id
         self._type_id = type_id
+        self._name = name
         self._description = description
         self._picture_file_name = picture_file_name
         self._price = price
 
     @staticmethod
-    def create(item_id: ItemId, brand_id: BrandId, type_id: TypeId, description: str, picture_file_name: str,
+    def create(item_id: ItemId, brand_id: BrandId, type_id: TypeId, name: str, description: str, picture_file_name: str,
                price: float):
         return Item(
-            item_id, brand_id, type_id, description, picture_file_name, price
+            item_id, brand_id, type_id, name, description, picture_file_name, price
         )
 
     def change_price(self, price: float) -> None:
@@ -51,6 +54,10 @@ class Item(AggregateRoot):
     @property
     def type_id(self) -> TypeId:
         return self._type_id
+
+    @property
+    def name(self) -> str:
+        return self._name
 
     @property
     def description(self) -> str:

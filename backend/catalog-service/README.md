@@ -14,3 +14,6 @@ This project use python and Django framework with a hexagonal architecture style
 ```bash
 python manage.py test 
 ```
+
+
+python manage.py makemigrations core --empty
