@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import { MonsterList } from "./MonsterList";
 import { GameDescription } from './GameDescription';
@@ -33,12 +33,14 @@ export const Content = ({ accountNumber }: ContentProps) => {
 }
 
 const AuthenticatedArea = () => {
-    const [openBattleDialog, setOpenBattleDialog] = React.useState<boolean>(false);
+    const [openBattleDialog, setOpenBattleDialog] = useState<boolean>(false);
+    const [attackerId, setAttackerId] = useState<string| undefined>();
     const showBattleDialog = () => setOpenBattleDialog(true);
     const handleClose = () => setOpenBattleDialog(false);
 
-    const onTrainClick = (traintId: string) => { };
+    const onTrainClick = (monsterId: string) => { };
     const onBattleClick = (monsterId: string) => { 
+        setAttackerId(monsterId);
         setOpenBattleDialog(true);
     };
 
@@ -49,7 +51,7 @@ const AuthenticatedArea = () => {
                 <AddIcon sx={{ mr: 1 }} />
                 Mint
             </Fab>
-            <BattleDialog open={openBattleDialog} handleClose={handleClose} />
+            <BattleDialog open={openBattleDialog} attackerId={attackerId} handleClose={handleClose} />
         </>
     );
 };
@@ -57,32 +59,34 @@ const AuthenticatedArea = () => {
 
 export type BattleDialogProps = {
     open: boolean;
+    attackerId: string| undefined;
     handleClose: () => void;
 };
 
-const BattleDialog = ({ open, handleClose }: BattleDialogProps) => {
+const BattleDialog = ({ open, attackerId, handleClose }: BattleDialogProps) => {
+    const [defenderId, setDefenderId] = useState<string>('');
     return (
-
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
+            <DialogTitle>Battle</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    To subscribe to this website, please enter your email address here. We
-                    will send updates occasionally.
+                    Attacker: Monster {attackerId}
                 </DialogContentText>
                 <TextField
                     autoFocus
                     margin="dense"
                     id="name"
-                    label="Email Address"
-                    type="email"
+                    label="Defender: Monster Id"
+                    type="text"
                     fullWidth
                     variant="standard"
+                    value={defenderId}
+                    onChange={(e) => setDefenderId(e.target.value)}
                 />
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Subscribe</Button>
+                <Button onClick={handleClose} color="error" >Atack</Button>
             </DialogActions>
         </Dialog>
 
