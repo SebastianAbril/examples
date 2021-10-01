@@ -18,13 +18,19 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import ShieldIcon from '@mui/icons-material/Shield';
 import SpeedIcon from '@mui/icons-material/Speed';
 import Battery90Icon from '@mui/icons-material/Battery90';
-import FaceIcon from '@mui/icons-material/Face';
+import TagFacesIcon from '@mui/icons-material/TagFaces';
 
 export type MonsterCardProps = {
-  monsterId: number;
+  monsterId: string;
+  onTrainClick: (traintId: string) => void;
+  onBattleClick: (monsterId: string) => void;
 }
 
-export const MonsterCard = ({ monsterId }: MonsterCardProps) => {
+export const MonsterCard = ({ monsterId, onBattleClick, onTrainClick }: MonsterCardProps) => {
+  
+  const handleOnBattleClick = () => onBattleClick(monsterId);
+  const handleOnTrainClick = () => onTrainClick(monsterId);
+  
   return (
     <Card
       sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -42,44 +48,42 @@ export const MonsterCard = ({ monsterId }: MonsterCardProps) => {
         alt="random"
       />
       <CardContent sx={{ flexGrow: 1 }}>
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List dense={true} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <Battery90Icon />
-              </Avatar>
+              <Battery90Icon />
             </ListItemAvatar>
-            <ListItemText primary="Hp" secondary="Jan 9, 2014" />
+            <ListItemText primary="Hp: 40/100" />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <WorkIcon />
-              </Avatar>
+              <TagFacesIcon />
             </ListItemAvatar>
-            <ListItemText primary="Attack" secondary="Jan 7, 2014" />
+            <ListItemText primary="Level: 1" />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <ShieldIcon />
-              </Avatar>
+              <WorkIcon />
             </ListItemAvatar>
-            <ListItemText primary="Defense" secondary="July 20, 2014" />
+            <ListItemText primary="Attack: 49" />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
-                <SpeedIcon />
-              </Avatar>
+              <ShieldIcon />
             </ListItemAvatar>
-            <ListItemText primary="Speed" secondary="July 20, 2014" />
+            <ListItemText primary="Defense: 40" />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <SpeedIcon />
+            </ListItemAvatar>
+            <ListItemText primary="Speed: 30" />
           </ListItem>
         </List>
       </CardContent>
       <CardActions>
-        <Button size="small">View</Button>
-        <Button size="small">Edit</Button>
+        <Button variant="contained" sx={{width:'100%'}} onClick={handleOnTrainClick}>Train</Button>
+        <Button variant="contained" color="error" sx={{width:'100%'}} onClick={handleOnBattleClick}>Battle</Button>
       </CardActions>
     </Card>
   );
