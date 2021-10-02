@@ -2,7 +2,7 @@ import Web3 from "web3";
 
 declare const window: any;
 
-export const loginWithMetamask = async (): Promise<Web3|undefined> => {
+export const loginWithMetamask = async (): Promise<Web3> => {
     if (window.ethereum) {
         const web3 = new Web3(window.ethereum);
         await window.ethereum.enable();
@@ -12,6 +12,6 @@ export const loginWithMetamask = async (): Promise<Web3|undefined> => {
         const web3 = new Web3(window.web3.currentProvider);
         return web3;
     } else {
-        return undefined;
+        throw new Error('No ethereum browser detected');
     }
 }

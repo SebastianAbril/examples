@@ -90,5 +90,19 @@ contract Ethermon is ERC721, Ownable{
         defender.currentHp =  defender.currentHp - damage;
     }
 
+    function findAllMonsterByUser(address user) public view returns (Monster[] memory) {
+        uint256 tokenCount = balanceOf(user);
+
+        if (tokenCount == 0) {
+            return new Monster[](0);
+        }
+
+
+        return new Monster[](tokenCount);
+
+
+
+    }
+
 }  
 
